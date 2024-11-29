@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -15,7 +15,7 @@ const SignUpForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage("");
@@ -27,11 +27,33 @@ const SignUpForm = () => {
       return;
     }
 
-    // Simulate API call
-    setTimeout(() => {
-      setMessage("Sign up successful! Welcome!");
+    try {
+      // Send a POST request to the register endpoint
+      const response = await fetch("http://localhost:3000/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 201) {
+        setMessage("Sign up successful! Welcome!");
+      } else {
+        setMessage(data.message || "An error occurred during registration.");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      setMessage("An error occurred during registration.");
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -55,10 +77,12 @@ const SignUpForm = () => {
           maxWidth: "400px",
           textAlign: "center",
           marginTop: "80px",
-          marginBottom: "10px"
+          marginBottom: "10px",
         }}
       >
-        <h2 style={{ marginBottom: "20px", fontSize: "1.8rem", color: "#333" }}>Sign Up</h2>
+        <h2 style={{ marginBottom: "20px", fontSize: "1.8rem", color: "#333" }}>
+          Sign Up
+        </h2>
         {message && (
           <p
             style={{
@@ -73,7 +97,7 @@ const SignUpForm = () => {
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: "20px", textAlign: "left" }}>
             <label
-              htmlFor="name"
+              htmlFor="username"
               style={{
                 display: "block",
                 marginBottom: "8px",
@@ -81,16 +105,16 @@ const SignUpForm = () => {
                 color: "#555",
               }}
             >
-              Full Name
+              Username
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               required
-              placeholder="John Doe"
+              placeholder="Enter your username"
               style={{
                 width: "100%",
                 padding: "10px",
@@ -218,8 +242,12 @@ const SignUpForm = () => {
               cursor: isSubmitting ? "not-allowed" : "pointer",
               transition: "background-color 0.3s",
             }}
-            onMouseOver={(e) => !isSubmitting && (e.target.style.backgroundColor = "#5a63e0")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "#6B73FF")}
+            onMouseOver={(e) =>
+              !isSubmitting && (e.target.style.backgroundColor = "#5a63e0")
+            }
+            onMouseOut={(e) =>
+              (e.target.style.backgroundColor = "#6B73FF")
+            }
           >
             {isSubmitting ? "Signing up..." : "Sign Up"}
           </button>
@@ -227,7 +255,7 @@ const SignUpForm = () => {
         <p style={{ marginTop: "20px", fontSize: "0.9rem", color: "#555" }}>
           Already have an account?{" "}
           <a
-            href="/LoginForm"
+            href="/LoginPage"
             style={{
               color: "#6B73FF",
               textDecoration: "none",

@@ -1,30 +1,15 @@
 import React from 'react';
 import OurMission from '../components/OurMission';
-import Team from '../components/Team';
-import Partners from '../components/Partners';
 import CustomSlider from '../components/CustomSlider';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const About = () => {
   return (
     <>
       
-      
-      <div className=" w-full h-screen">
-        {/* Welcome Text Positioned Absolutely */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center  text-white z-20">
-          
+      <Navbar />
 
-        </div>
-
-        {/* CustomSlider with images in the background */}
-        <CustomSlider>
-          <img src="/Green.jpg" alt="Green" className="object-cover w-full h-screen" loading="lazy" />
-          <img src="/Urban resilient.jpeg" alt="Urban Resilient" className="object-cover w-full h-screen" loading="lazy" />
-          <img src="/Nature based solution.jpeg" alt="Nature-Based Solution" className="object-cover w-full h-screen" loading="lazy" />
-          <img src="/Urban agriculture1.jpeg" alt="Urban Agriculture" className="object-cover w-full h-screen" loading="lazy" />
-          <img src="/smart City.jpeg" alt="Smart City" className="object-cover w-full h-screen" loading="lazy" />
-        </CustomSlider>
-      </div>
 
       <div className="font-[sans-serif] relative mx-12 overflow-hidden rounded-lg py-10">
         <div className="grid sm:grid-cols-2 items-center max-sm:gap-10 mt-28 py-16 rounded-lg border-t-8 border-green-900 animate__animated animate__slideInUp">
@@ -49,11 +34,7 @@ const About = () => {
         </div>
       </div>
       <OurMission />
-
-
-  
-      {/* <Team />
-      <Partners /> */}
+      <Footer />
     </>
   );
 };

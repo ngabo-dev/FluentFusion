@@ -3,6 +3,8 @@ import 'animate.css';
 import Testimonial from '../components/Testimonial';
 import Joinus from '../components/Joinus';
 import Whatwedo from '../components/Whatwedo';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 // import Partners from '../components/Partners';
 
 const Home = () => {
@@ -25,6 +27,7 @@ const Home = () => {
 
   return (
     <>
+    <Navbar />
       <div className="relative h-screen bg-no-repeat bg-cover">
         {/* Videos */}
         {videos.map((video, index) => (
@@ -64,7 +67,7 @@ const Home = () => {
 
                 {/* Join Us Button */}
                 <a
-                  href="/LoginForm"
+                  href="LoginPage"
                   className="mt-8 sm:mt-12 bg-pink-600 hover:bg-opacity-80 text-white py-3 px-6 rounded-lg text-lg lg:text-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl inline-block"
                 >
                   Get Started
@@ -88,6 +91,7 @@ const Home = () => {
       <Joinus />
       <Testimonial />
       {/* <Partners /> */}
+      <Footer />
     </>
   );
 };

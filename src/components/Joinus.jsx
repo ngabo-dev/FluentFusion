@@ -46,7 +46,7 @@ const Joinus = () => {
           We understand that each learner has unique needs. Our platform offers personalized course recommendations, allowing users to focus on specific language skills and topics that align with their goals.
           </p>
           <div className="font-[sans-serif] space-x-12 space-y-4">
-            <a href="/LoginForm">
+            <a href="/LoginPage">
             <button type="button" className="px-5 py-2.5 rounded-lg tracking-wider font-light text-base text-white p-3.5 outline-none bg-pink-600 hover:bg-pink-500 active:bg-pink-600 capitalize">
               Enroll in our Courses
             </button>

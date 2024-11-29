@@ -1,8 +1,11 @@
 import React from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Communities = () => {
   return (
     <>
+    <Navbar />
       <div class="relative font-sans before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
         <img src="/community.jpg" alt="Banner Image" class="absolute inset-0 w-full h-full object-cover" />
         <div class="min-h-[550px] relative h-full max-w-6xl mx-auto flex flex-col justify-center items-center text-center text-white p-6">
@@ -54,6 +57,7 @@ const Communities = () => {
           </div>
         </div>
       </div>
+      import Footer from "../components/Footer";
     </>
   );
 };

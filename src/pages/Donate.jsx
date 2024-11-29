@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const donationCards = [
   { id: 1, title: "Transportation planning", amount: "$10", description: "Support Transportation planning for Comprehensive Solutions", image: "/Transportation 2.jpg" },
@@ -51,6 +52,7 @@ const Donate = () => {
 
   return (
     <>
+    <Navbar />
             <div class="relative font-sans before:absolute before:w-full before:h-full before:inset-0 before:bg-black before:opacity-50 before:z-10">
     <img src="/donate.jpg" alt="Banner Image" class="absolute inset-0 w-full h-full object-cover" />
 
@@ -319,6 +321,7 @@ const Donate = () => {
           </div>
         </div>
       )}
+      <Footer />
     </>
   );
 };

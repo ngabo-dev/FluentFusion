@@ -48,21 +48,15 @@ const Navbar = () => {
           <Link to="/" className={`link text-black font-semibold text-lg mx-3 ${active === "home" ? "text-green-600" : ""}`} onClick={() => changePage("home")}>
             Home
           </Link>
-          <Link to="/aboutme" className={`link text-black font-semibold text-lg mx-3 ${active === "aboutme" ? "text-green-600" : ""}`} onClick={() => changePage("aboutme")}>
+          <Link to="/About" className={`link text-black font-semibold text-lg mx-3 ${active === "/About" ? "text-green-600" : ""}`} onClick={() => changePage("About")}>
             About Us
           </Link>
-
-          {/* Area of Interest dropdown */}
-  
-
-          {/* Consultancy dropdown */}
-
 
           <Link to="/Courses" className={`link font-semibold text-lg mx-3 ${active === "event" ? "text-green-600 underline" : ""}`} onClick={() => changePage("eveCoursesnt")}>
             Courses
           </Link>
-          <Link to="/fellowship" className={`link font-semibold text-lg mx-3 ${active === "fellowship" ? "text-green-600" : ""}`} onClick={() => changePage("fellowship")}>
-            Resources
+          <Link to="/Resourses" className={`link font-semibold text-lg mx-3 ${active === "Resourses" ? "text-green-600" : ""}`} onClick={() => changePage("Resourses")}>
+            Resourses
           </Link>
           <Link to="/contact" className={`link font-semibold text-lg mx-3 ${active === "contact" ? "text-green-600" : ""}`} onClick={() => changePage("contact")}>
           Contact Us
@@ -70,7 +64,7 @@ const Navbar = () => {
 
 
           {/* Add Contact Link Here for Mobile */}
-          <Link to="/LoginForm" className={`link font-semibold text-lg  px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition ${active === "LoginForm" ? "text-green-600" : ""}`} onClick={() => changePage("LoginForm")}>
+          <Link to="/LoginPage" className={`link font-semibold text-lg  px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition ${active === "LoginForm" ? "text-green-600" : ""}`} onClick={() => changePage("LoginForm")}>
             Sign Up/Login
           </Link>
         </div>

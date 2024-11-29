@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -10,23 +11,45 @@ const LoginForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage("");
-
-    // Simulate a login API request
-    setTimeout(() => {
-      if (formData.email === "test@example.com" && formData.password === "password") {
+  
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
         setMessage("Login successful! Welcome!");
+        // Save the token to localStorage
+        localStorage.setItem("token", data.token);
+        
+        // Navigate to the student dashboard after successful login
+        navigate('/CoursesDashboard');
       } else {
-        setMessage("Invalid email or password. Please try again.");
+        setMessage(data.message || "An error occurred. Please try again.");
       }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setMessage("An error occurred during login.");
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
+
   return (
+    <>
     <div
       style={{
         minHeight: "100vh",
@@ -34,7 +57,6 @@ const LoginForm = () => {
         justifyContent: "center",
         alignItems: "center",
         background: "linear-gradient(to right, #ffb6c1, #8ec5fc)",
-        
         fontFamily: "'Poppins', sans-serif",
       }}
     >
@@ -47,7 +69,7 @@ const LoginForm = () => {
           width: "100%",
           maxWidth: "400px",
           textAlign: "center",
-          marginTop: "50px"
+          marginTop: "50px",
         }}
       >
         <h2 style={{ marginBottom: "20px", fontSize: "1.8rem", color: "#333" }}>Log In</h2>
@@ -153,7 +175,7 @@ const LoginForm = () => {
         <p style={{ marginTop: "20px", fontSize: "0.9rem", color: "#555" }}>
           Don't have an account?{" "}
           <a
-            href="/SignUpForm"
+            href="/SignUpPage"
             style={{
               color: "#6B73FF",
               textDecoration: "none",
@@ -165,6 +187,7 @@ const LoginForm = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };
 
